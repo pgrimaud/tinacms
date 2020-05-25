@@ -18,11 +18,11 @@ limitations under the License.
 
 import * as React from 'react'
 import { useState } from 'react'
-import { Plugin } from '@tinacms/core'
 
-import { ImageProps } from '../../types'
-import { Wysiwyg as WysiwygEditor } from '../Editor'
+import { ImageProps, Plugin } from '../../types'
 import { MarkdownEditor } from '../MarkdownEditor'
+import { Wysiwyg as WysiwygEditor } from '../WysiwygEditor'
+import { EditorModeMenu } from '../EditorModeMenu'
 
 export interface RawModeEditorProps {
   defaultValue: string
@@ -32,11 +32,16 @@ export interface RawModeEditorProps {
   sticky?: boolean
 }
 
+const wysiwygModeTogglePlugin = (setMode: (mode: string) => void) => ({
+  name: 'wysiwygModeToggle',
+  WysiwygMenu: () => <EditorModeMenu toggleEditorMode={() => setMode('raw')} />,
+})
+
 export const RawModeEditor = ({
   defaultValue,
   imageProps,
   onChange,
-  plugins,
+  plugins = [],
   sticky,
 }: RawModeEditorProps) => {
   const [mode, setMode] = useState('wysiwyg')
@@ -62,11 +67,10 @@ export const RawModeEditor = ({
             value,
             onChange: handleChange,
           }}
-          plugins={plugins}
+          plugins={[...plugins, wysiwygModeTogglePlugin(setMode)]}
           sticky={sticky}
           format="markdown"
           imageProps={imageProps}
-          toggleEditorMode={() => setMode('raw')}
         />
       )}
     </>

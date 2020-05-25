@@ -19,10 +19,9 @@ limitations under the License.
 import * as React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
-import { Plugin } from '@tinacms/core'
 
 import { Format } from '../../translator'
-import { ImageProps } from '../../types'
+import { ImageProps, Plugin } from '../../types'
 import { EditorStateProvider } from '../../context/editorState'
 import { Menubar } from '../Menubar'
 
@@ -71,7 +70,7 @@ export const Wysiwyg = styled(
           <Menubar
             sticky={sticky}
             uploadImages={imageProps && imageProps.upload}
-            toggleEditorMode={toggleEditorMode}
+            plugins={plugins}
           />
         </EditorStateProvider>
         <div {...styleProps} ref={editorRef} />

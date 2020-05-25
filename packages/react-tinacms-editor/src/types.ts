@@ -19,6 +19,7 @@ limitations under the License.
 import { Decoration, EditorView, NodeView } from 'prosemirror-view'
 import { EditorState } from 'prosemirror-state'
 import { Node } from 'prosemirror-model'
+import { ElementType } from 'react'
 import { Schema } from 'prosemirror-model'
 
 export interface ImageProps {
@@ -49,4 +50,9 @@ export type NodeViews = {
 
 export interface Command {
   (state: EditorState, ...options: any[]): void
+}
+
+export interface Plugin {
+  name: string
+  WysiwygMenu: ElementType
 }

@@ -18,7 +18,7 @@ limitations under the License.
 
 import * as React from 'react'
 import { InlineField } from 'react-tinacms-inline'
-import { Wysiwyg, WysiwygProps } from '../components/Editor'
+import { Wysiwyg, WysiwygProps } from '../components/WysiwygEditor'
 
 export interface InlineWysiwygFieldProps extends Omit<WysiwygProps, 'input'> {
   name: string

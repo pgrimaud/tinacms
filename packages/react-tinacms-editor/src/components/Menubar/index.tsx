@@ -39,7 +39,7 @@ import {
 
 import { useEditorStateContext } from '../../context/editorState'
 import { MenuPortalProvider } from '../../context/MenuPortal'
-import { EditorModeMenu } from '../EditorModeMenu'
+import { Plugin } from '../../types'
 
 import {
   MenuPlaceholder,
@@ -50,14 +50,10 @@ import {
 interface Props {
   sticky?: boolean | string
   uploadImages?: (files: File[]) => Promise<string[]>
-  toggleEditorMode?: () => void
+  plugins?: Plugin[]
 }
 
-export const Menubar = ({
-  sticky = true,
-  uploadImages,
-  toggleEditorMode,
-}: Props) => {
+export const Menubar = ({ sticky = true, uploadImages, plugins }: Props) => {
   const [menuFixed, setMenuFixed] = useState(false)
   const isBrowser = typeof window !== `undefined`
   const menuRef = useRef<HTMLDivElement>(null)
@@ -137,9 +133,9 @@ export const Menubar = ({
             <CodeBlockMenu />
             <ListMenu />
             <HistoryMenu />
-            {toggleEditorMode && (
-              <EditorModeMenu toggleEditorMode={toggleEditorMode} />
-            )}
+            {plugins?.map(({ WysiwygMenu }) => (
+              <WysiwygMenu />
+            ))}
           </MenuContainer>
         </MenuPortalProvider>
       </MenuWrapper>

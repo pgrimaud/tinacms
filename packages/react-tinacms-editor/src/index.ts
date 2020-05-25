@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 // Base Components
-export * from './components/Editor'
+export * from './components/WysiwygEditor'
 export * from './components/RawModeEditor'
 
 // Field Plugins

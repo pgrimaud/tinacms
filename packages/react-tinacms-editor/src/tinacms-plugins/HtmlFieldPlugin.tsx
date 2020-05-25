@@ -17,7 +17,7 @@ limitations under the License.
 */
 
 import React from 'react'
-import { Wysiwyg } from '../components/Editor'
+import { Wysiwyg } from '../components/WysiwygEditor'
 import { wysiwygStyles } from './wysiwygStyles'
 
 const HTMLField = wysiwygStyles(props => {
